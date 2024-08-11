@@ -2,11 +2,13 @@ package com.association.service;
 
 import com.association.model.User;
 import com.association.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
-
+@Slf4j
 @Service
 public class UserService {
     @Autowired
@@ -18,6 +20,11 @@ public class UserService {
     }
 
     public Optional<User> getData(Integer id) {
-        return userRepository.findById(id);
+        User user = new User();
+        Optional<User> userData = userRepository.findById(id);
+        log.info("User details: {}", userData);
+
+        //List<User> userLst = userRepository.findByUserName("ravijadhav9037@gmail.com");
+        return userData;
     }
 }
